@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 @RestController
-public class UserController {
+public class PersonController {
 
     @PostMapping("/person")
     PersonBean newPerson(@RequestBody PersonBean personBean) {

@@ -42,7 +42,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Person extends TableImpl<PersonRecord> {
 
-    private static final long serialVersionUID = -1082379138;
+    private static final long serialVersionUID = -1867630584;
 
     /**
      * The reference instance of <code>lnto_usermgmt.person</code>
@@ -96,6 +96,11 @@ public class Person extends TableImpl<PersonRecord> {
      * The column <code>lnto_usermgmt.person.Suffix</code>.
      */
     public final TableField<PersonRecord, String> SUFFIX = createField("Suffix", org.jooq.impl.SQLDataType.VARCHAR(128), this, "");
+
+    /**
+     * The column <code>lnto_usermgmt.person.IsActive</code>.
+     */
+    public final TableField<PersonRecord, Byte> ISACTIVE = createField("IsActive", org.jooq.impl.SQLDataType.TINYINT.nullable(false), this, "");
 
     /**
      * Create a <code>lnto_usermgmt.person</code> table reference

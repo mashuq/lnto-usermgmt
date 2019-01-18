@@ -4,6 +4,7 @@
 package o.lnt.domain.tables;
 
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
@@ -41,7 +42,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Address extends TableImpl<AddressRecord> {
 
-    private static final long serialVersionUID = -1489826666;
+    private static final long serialVersionUID = 352338948;
 
     /**
      * The reference instance of <code>lnto_usermgmt.address</code>
@@ -110,6 +111,16 @@ public class Address extends TableImpl<AddressRecord> {
      * The column <code>lnto_usermgmt.address.Other</code>.
      */
     public final TableField<AddressRecord, String> OTHER = createField("Other", org.jooq.impl.SQLDataType.VARCHAR(512), this, "");
+
+    /**
+     * The column <code>lnto_usermgmt.address.Longitude</code>.
+     */
+    public final TableField<AddressRecord, BigDecimal> LONGITUDE = createField("Longitude", org.jooq.impl.SQLDataType.DECIMAL(11, 8), this, "");
+
+    /**
+     * The column <code>lnto_usermgmt.address.Latitude</code>.
+     */
+    public final TableField<AddressRecord, BigDecimal> LATITUDE = createField("Latitude", org.jooq.impl.SQLDataType.DECIMAL(11, 8), this, "");
 
     /**
      * Create a <code>lnto_usermgmt.address</code> table reference

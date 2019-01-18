@@ -17,7 +17,7 @@ public class PersonBean {
     private List<EmailBean> emails;
     private List<PhoneBean> phones;
     private List<AddressBean> addresses;
-
+    private boolean active;
 
     public Integer getPersonID() {
         return personID;
@@ -108,6 +108,14 @@ public class PersonBean {
         this.addresses = addresses;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     @Override
     public String toString() {
         return "PersonBean{" +
@@ -122,6 +130,7 @@ public class PersonBean {
                 ", emails=" + emails +
                 ", phones=" + phones +
                 ", addresses=" + addresses +
+                ", active=" + active +
                 '}';
     }
 }

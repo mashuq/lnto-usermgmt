@@ -13,6 +13,8 @@ public class AddressBean {
     private String Other;
     private AddressType addressType;
     private Boolean isDefault;
+    private Double latitude;
+    private Double longitude;
 
     public Integer getAddressID() {
         return addressID;
@@ -94,6 +96,22 @@ public class AddressBean {
         isDefault = aDefault;
     }
 
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
     @Override
     public String toString() {
         return "AddressBean{" +
@@ -107,6 +125,8 @@ public class AddressBean {
                 ", Other='" + Other + '\'' +
                 ", addressType=" + addressType +
                 ", isDefault=" + isDefault +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
                 '}';
     }
 }
