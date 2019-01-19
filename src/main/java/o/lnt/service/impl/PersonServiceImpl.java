@@ -5,10 +5,10 @@ import o.lnt.domain.tables.Person;
 import o.lnt.domain.tables.records.PersonRecord;
 import o.lnt.service.PersonService;
 import org.jooq.DSLContext;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import springfox.documentation.swagger2.mappers.ModelMapper;
 
 @Service
 @Transactional
@@ -21,16 +21,15 @@ public class PersonServiceImpl implements PersonService {
     private ModelMapper modelMapper;
 
     @Override
-    public void savePerson(PersonBean personBean) {
-        System.out.println(personBean);
-        PersonRecord personRecord = modelMapper.map(personBean, PersonRecord.class);
-        System.out.println(personRecord);
-        dsl.executeInsert(personRecord);
+    public PersonBean savePerson(PersonBean personBean) {
+        PersonRecord personRecord = dsl.newRecord(Person.PERSON, personBean);
+        personRecord.store();
+        return personRecord.into(PersonBean.class);
     }
 
     @Override
-    public void updatePerson(PersonBean personBean) {
-
+    public PersonBean updatePerson(PersonBean personBean) {
+        return null;
     }
 
     @Override

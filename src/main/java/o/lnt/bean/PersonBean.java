@@ -2,15 +2,23 @@ package o.lnt.bean;
 
 import o.lnt.enumeration.Gender;
 
-import java.time.LocalDate;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class PersonBean {
     private Integer personID;
+    @NotBlank(message = "First Name cannot be null")
     private String firstName;
+    @NotBlank (message = "Last Name cannot be null")
     private String lastName;
     private String middleName;
-    private LocalDate birthday;
+    @Past(message = "Birthday cannot be present or future")
+    @NotNull(message = "Birthday cannot be null")
+    private LocalDateTime birthday;
+    @NotNull (message = "Gender cannot be null")
     private Gender gender;
     private String title;
     private String suffix;
@@ -51,11 +59,11 @@ public class PersonBean {
         this.middleName = middleName;
     }
 
-    public LocalDate getBirthday() {
+    public LocalDateTime getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(LocalDate birthday) {
+    public void setBirthday(LocalDateTime birthday) {
         this.birthday = birthday;
     }
 
@@ -82,7 +90,6 @@ public class PersonBean {
     public void setSuffix(String suffix) {
         this.suffix = suffix;
     }
-
 
     public List<EmailBean> getEmails() {
         return emails;

@@ -4,7 +4,7 @@
 package o.lnt.domain.tables;
 
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -42,7 +42,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Person extends TableImpl<PersonRecord> {
 
-    private static final long serialVersionUID = -1867630584;
+    private static final long serialVersionUID = -1104260209;
 
     /**
      * The reference instance of <code>lnto_usermgmt.person</code>
@@ -85,7 +85,7 @@ public class Person extends TableImpl<PersonRecord> {
     /**
      * The column <code>lnto_usermgmt.person.Birthday</code>.
      */
-    public final TableField<PersonRecord, Timestamp> BIRTHDAY = createField("Birthday", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "");
+    public final TableField<PersonRecord, LocalDateTime> BIRTHDAY = createField("Birthday", org.jooq.impl.SQLDataType.LOCALDATETIME.nullable(false), this, "");
 
     /**
      * The column <code>lnto_usermgmt.person.Title</code>.
@@ -98,9 +98,9 @@ public class Person extends TableImpl<PersonRecord> {
     public final TableField<PersonRecord, String> SUFFIX = createField("Suffix", org.jooq.impl.SQLDataType.VARCHAR(128), this, "");
 
     /**
-     * The column <code>lnto_usermgmt.person.IsActive</code>.
+     * The column <code>lnto_usermgmt.person.Active</code>.
      */
-    public final TableField<PersonRecord, Byte> ISACTIVE = createField("IsActive", org.jooq.impl.SQLDataType.TINYINT.nullable(false), this, "");
+    public final TableField<PersonRecord, Byte> ACTIVE = createField("Active", org.jooq.impl.SQLDataType.TINYINT.nullable(false), this, "");
 
     /**
      * Create a <code>lnto_usermgmt.person</code> table reference

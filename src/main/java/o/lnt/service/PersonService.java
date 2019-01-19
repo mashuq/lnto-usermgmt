@@ -5,9 +5,9 @@ import o.lnt.domain.tables.Person;
 
 public interface PersonService {
 
-    public void savePerson(PersonBean personBean);
+    public PersonBean savePerson(PersonBean personBean);
 
-    public void updatePerson(PersonBean personBean);
+    public PersonBean updatePerson(PersonBean personBean);
 
     public Person getPerson(Integer personID);
 

@@ -2,15 +2,22 @@ package o.lnt.bean;
 
 import o.lnt.enumeration.AddressType;
 
+import javax.validation.constraints.NotBlank;
+
 public class AddressBean {
     private Integer addressID;
+    @NotBlank(message = "Country cannot be null")
     private String Country;
     private String ZipPostCode;
     private String ProvinceStateCounty;
+    @NotBlank (message = "City/Town/Village Name cannot be null")
     private String CityTownVillage;
+    @NotBlank (message = "Street/Road/Block cannot be null")
     private String StreetRoadBlock;
+    @NotBlank (message = "House/Building Number cannot be null")
     private String HouseBuilding;
     private String Other;
+    @NotBlank (message = "Address Type cannot be null")
     private AddressType addressType;
     private Boolean isDefault;
     private Double latitude;

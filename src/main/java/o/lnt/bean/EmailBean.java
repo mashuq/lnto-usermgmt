@@ -2,9 +2,15 @@ package o.lnt.bean;
 
 import o.lnt.enumeration.AddressType;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
 public class EmailBean {
     private Integer emailID;
+    @Email
+    @NotBlank(message = "Email Address cannot be null")
     private String emailAddress;
+    @NotBlank(message = "Email Address Type cannot be null")
     private AddressType addressType;
     private Boolean isDefault;
 
