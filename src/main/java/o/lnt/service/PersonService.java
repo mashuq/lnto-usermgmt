@@ -1,7 +1,6 @@
 package o.lnt.service;
 
 import o.lnt.bean.PersonBean;
-import o.lnt.domain.tables.Person;
 
 public interface PersonService {
 
@@ -9,7 +8,7 @@ public interface PersonService {
 
     public PersonBean updatePerson(PersonBean personBean);
 
-    public Person getPerson(Integer personID);
+    public PersonBean getPerson(Integer personID);
 
     public void deletePerson(Integer personID);
 }

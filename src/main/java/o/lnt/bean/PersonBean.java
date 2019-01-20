@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 public class PersonBean {
     private Integer personID;
@@ -139,5 +140,26 @@ public class PersonBean {
                 ", addresses=" + addresses +
                 ", active=" + active +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PersonBean that = (PersonBean) o;
+        return active == that.active &&
+                Objects.equals(personID, that.personID) &&
+                firstName.equals(that.firstName) &&
+                lastName.equals(that.lastName) &&
+                Objects.equals(middleName, that.middleName) &&
+                birthday.equals(that.birthday) &&
+                gender == that.gender &&
+                Objects.equals(title, that.title) &&
+                Objects.equals(suffix, that.suffix);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(personID, firstName, lastName, middleName, birthday, gender, title, suffix, active);
     }
 }
