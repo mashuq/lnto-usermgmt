@@ -169,6 +169,7 @@
                                     <includes>.*</includes>
                                     <excludes/>
                                     <inputSchema>${spring.datasource.dbname}</inputSchema>
+                                    <outputSchemaToDefault>true</outputSchemaToDefault>
                                 </database>
                                 <target>
                                     <packageName>o.lnt.domain</packageName>
@@ -176,6 +177,7 @@
                                 </target>
                                 <generate>
                                     <javaTimeTypes>true</javaTimeTypes>
+                                    <globalObjectReferences>false</globalObjectReferences>
                                 </generate>
                             </generator>
                         </configuration>

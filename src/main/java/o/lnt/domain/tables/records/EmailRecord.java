@@ -28,73 +28,73 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class EmailRecord extends UpdatableRecordImpl<EmailRecord> implements Record5<Integer, String, String, Integer, Byte> {
 
-    private static final long serialVersionUID = 893993881;
+    private static final long serialVersionUID = -704325159;
 
     /**
-     * Setter for <code>lnto_usermgmt.email.EmailID</code>.
+     * Setter for <code>email.EmailID</code>.
      */
     public void setEmailid(Integer value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>lnto_usermgmt.email.EmailID</code>.
+     * Getter for <code>email.EmailID</code>.
      */
     public Integer getEmailid() {
         return (Integer) get(0);
     }
 
     /**
-     * Setter for <code>lnto_usermgmt.email.AddressType</code>.
+     * Setter for <code>email.AddressType</code>.
      */
     public void setAddresstype(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>lnto_usermgmt.email.AddressType</code>.
+     * Getter for <code>email.AddressType</code>.
      */
     public String getAddresstype() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>lnto_usermgmt.email.EmailAddress</code>.
+     * Setter for <code>email.EmailAddress</code>.
      */
     public void setEmailaddress(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>lnto_usermgmt.email.EmailAddress</code>.
+     * Getter for <code>email.EmailAddress</code>.
      */
     public String getEmailaddress() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>lnto_usermgmt.email.PersonID</code>.
+     * Setter for <code>email.PersonID</code>.
      */
     public void setPersonid(Integer value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>lnto_usermgmt.email.PersonID</code>.
+     * Getter for <code>email.PersonID</code>.
      */
     public Integer getPersonid() {
         return (Integer) get(3);
     }
 
     /**
-     * Setter for <code>lnto_usermgmt.email.IsDefault</code>.
+     * Setter for <code>email.IsDefault</code>.
      */
     public void setIsdefault(Byte value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>lnto_usermgmt.email.IsDefault</code>.
+     * Getter for <code>email.IsDefault</code>.
      */
     public Byte getIsdefault() {
         return (Byte) get(4);

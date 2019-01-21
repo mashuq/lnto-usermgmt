@@ -30,185 +30,185 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class AddressRecord extends UpdatableRecordImpl<AddressRecord> implements Record13<Integer, String, Integer, Byte, String, String, String, String, String, String, String, BigDecimal, BigDecimal> {
 
-    private static final long serialVersionUID = 31662341;
+    private static final long serialVersionUID = -1883665979;
 
     /**
-     * Setter for <code>lnto_usermgmt.address.AddressID</code>.
+     * Setter for <code>address.AddressID</code>.
      */
     public void setAddressid(Integer value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>lnto_usermgmt.address.AddressID</code>.
+     * Getter for <code>address.AddressID</code>.
      */
     public Integer getAddressid() {
         return (Integer) get(0);
     }
 
     /**
-     * Setter for <code>lnto_usermgmt.address.AddressType</code>.
+     * Setter for <code>address.AddressType</code>.
      */
     public void setAddresstype(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>lnto_usermgmt.address.AddressType</code>.
+     * Getter for <code>address.AddressType</code>.
      */
     public String getAddresstype() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>lnto_usermgmt.address.PersonID</code>.
+     * Setter for <code>address.PersonID</code>.
      */
     public void setPersonid(Integer value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>lnto_usermgmt.address.PersonID</code>.
+     * Getter for <code>address.PersonID</code>.
      */
     public Integer getPersonid() {
         return (Integer) get(2);
     }
 
     /**
-     * Setter for <code>lnto_usermgmt.address.IsDefault</code>.
+     * Setter for <code>address.IsDefault</code>.
      */
     public void setIsdefault(Byte value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>lnto_usermgmt.address.IsDefault</code>.
+     * Getter for <code>address.IsDefault</code>.
      */
     public Byte getIsdefault() {
         return (Byte) get(3);
     }
 
     /**
-     * Setter for <code>lnto_usermgmt.address.Country</code>.
+     * Setter for <code>address.Country</code>.
      */
     public void setCountry(String value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>lnto_usermgmt.address.Country</code>.
+     * Getter for <code>address.Country</code>.
      */
     public String getCountry() {
         return (String) get(4);
     }
 
     /**
-     * Setter for <code>lnto_usermgmt.address.ZipPostCode</code>.
+     * Setter for <code>address.ZipPostCode</code>.
      */
     public void setZippostcode(String value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>lnto_usermgmt.address.ZipPostCode</code>.
+     * Getter for <code>address.ZipPostCode</code>.
      */
     public String getZippostcode() {
         return (String) get(5);
     }
 
     /**
-     * Setter for <code>lnto_usermgmt.address.ProvinceStateCounty</code>.
+     * Setter for <code>address.ProvinceStateCounty</code>.
      */
     public void setProvincestatecounty(String value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>lnto_usermgmt.address.ProvinceStateCounty</code>.
+     * Getter for <code>address.ProvinceStateCounty</code>.
      */
     public String getProvincestatecounty() {
         return (String) get(6);
     }
 
     /**
-     * Setter for <code>lnto_usermgmt.address.CityTownVillage</code>.
+     * Setter for <code>address.CityTownVillage</code>.
      */
     public void setCitytownvillage(String value) {
         set(7, value);
     }
 
     /**
-     * Getter for <code>lnto_usermgmt.address.CityTownVillage</code>.
+     * Getter for <code>address.CityTownVillage</code>.
      */
     public String getCitytownvillage() {
         return (String) get(7);
     }
 
     /**
-     * Setter for <code>lnto_usermgmt.address.StreetRoadBlock</code>.
+     * Setter for <code>address.StreetRoadBlock</code>.
      */
     public void setStreetroadblock(String value) {
         set(8, value);
     }
 
     /**
-     * Getter for <code>lnto_usermgmt.address.StreetRoadBlock</code>.
+     * Getter for <code>address.StreetRoadBlock</code>.
      */
     public String getStreetroadblock() {
         return (String) get(8);
     }
 
     /**
-     * Setter for <code>lnto_usermgmt.address.HouseBuilding</code>.
+     * Setter for <code>address.HouseBuilding</code>.
      */
     public void setHousebuilding(String value) {
         set(9, value);
     }
 
     /**
-     * Getter for <code>lnto_usermgmt.address.HouseBuilding</code>.
+     * Getter for <code>address.HouseBuilding</code>.
      */
     public String getHousebuilding() {
         return (String) get(9);
     }
 
     /**
-     * Setter for <code>lnto_usermgmt.address.Other</code>.
+     * Setter for <code>address.Other</code>.
      */
     public void setOther(String value) {
         set(10, value);
     }
 
     /**
-     * Getter for <code>lnto_usermgmt.address.Other</code>.
+     * Getter for <code>address.Other</code>.
      */
     public String getOther() {
         return (String) get(10);
     }
 
     /**
-     * Setter for <code>lnto_usermgmt.address.Longitude</code>.
+     * Setter for <code>address.Longitude</code>.
      */
     public void setLongitude(BigDecimal value) {
         set(11, value);
     }
 
     /**
-     * Getter for <code>lnto_usermgmt.address.Longitude</code>.
+     * Getter for <code>address.Longitude</code>.
      */
     public BigDecimal getLongitude() {
         return (BigDecimal) get(11);
     }
 
     /**
-     * Setter for <code>lnto_usermgmt.address.Latitude</code>.
+     * Setter for <code>address.Latitude</code>.
      */
     public void setLatitude(BigDecimal value) {
         set(12, value);
     }
 
     /**
-     * Getter for <code>lnto_usermgmt.address.Latitude</code>.
+     * Getter for <code>address.Latitude</code>.
      */
     public BigDecimal getLatitude() {
         return (BigDecimal) get(12);

@@ -9,22 +9,20 @@ import java.util.List;
 
 import javax.annotation.Generated;
 
+import o.lnt.domain.DefaultSchema;
 import o.lnt.domain.Indexes;
-import o.lnt.domain.Keys;
-import o.lnt.domain.LntoUsermgmt;
 import o.lnt.domain.tables.records.PhoneRecord;
 
 import org.jooq.Field;
-import org.jooq.ForeignKey;
 import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
-import org.jooq.Record;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
+import org.jooq.impl.Internal;
 import org.jooq.impl.TableImpl;
 
 
@@ -41,10 +39,10 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Phone extends TableImpl<PhoneRecord> {
 
-    private static final long serialVersionUID = -1285760933;
+    private static final long serialVersionUID = -1159596471;
 
     /**
-     * The reference instance of <code>lnto_usermgmt.phone</code>
+     * The reference instance of <code>phone</code>
      */
     public static final Phone PHONE = new Phone();
 
@@ -57,46 +55,46 @@ public class Phone extends TableImpl<PhoneRecord> {
     }
 
     /**
-     * The column <code>lnto_usermgmt.phone.PhoneID</code>.
+     * The column <code>phone.PhoneID</code>.
      */
     public final TableField<PhoneRecord, Integer> PHONEID = createField("PhoneID", org.jooq.impl.SQLDataType.INTEGER.nullable(false).identity(true), this, "");
 
     /**
-     * The column <code>lnto_usermgmt.phone.AddressType</code>.
+     * The column <code>phone.AddressType</code>.
      */
     public final TableField<PhoneRecord, String> ADDRESSTYPE = createField("AddressType", org.jooq.impl.SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>lnto_usermgmt.phone.PhoneNumber</code>.
+     * The column <code>phone.PhoneNumber</code>.
      */
     public final TableField<PhoneRecord, String> PHONENUMBER = createField("PhoneNumber", org.jooq.impl.SQLDataType.VARCHAR(20), this, "");
 
     /**
-     * The column <code>lnto_usermgmt.phone.PersonID</code>.
+     * The column <code>phone.PersonID</code>.
      */
     public final TableField<PhoneRecord, Integer> PERSONID = createField("PersonID", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
-     * The column <code>lnto_usermgmt.phone.IsDefault</code>.
+     * The column <code>phone.IsDefault</code>.
      */
     public final TableField<PhoneRecord, Byte> ISDEFAULT = createField("IsDefault", org.jooq.impl.SQLDataType.TINYINT.nullable(false), this, "");
 
     /**
-     * Create a <code>lnto_usermgmt.phone</code> table reference
+     * Create a <code>phone</code> table reference
      */
     public Phone() {
         this(DSL.name("phone"), null);
     }
 
     /**
-     * Create an aliased <code>lnto_usermgmt.phone</code> table reference
+     * Create an aliased <code>phone</code> table reference
      */
     public Phone(String alias) {
         this(DSL.name(alias), PHONE);
     }
 
     /**
-     * Create an aliased <code>lnto_usermgmt.phone</code> table reference
+     * Create an aliased <code>phone</code> table reference
      */
     public Phone(Name alias) {
         this(alias, PHONE);
@@ -110,16 +108,12 @@ public class Phone extends TableImpl<PhoneRecord> {
         super(alias, null, aliased, parameters, DSL.comment(""));
     }
 
-    public <O extends Record> Phone(Table<O> child, ForeignKey<O, PhoneRecord> key) {
-        super(child, key, PHONE);
-    }
-
     /**
      * {@inheritDoc}
      */
     @Override
     public Schema getSchema() {
-        return LntoUsermgmt.LNTO_USERMGMT;
+        return DefaultSchema.DEFAULT_SCHEMA;
     }
 
     /**
@@ -135,7 +129,7 @@ public class Phone extends TableImpl<PhoneRecord> {
      */
     @Override
     public Identity<PhoneRecord, Integer> getIdentity() {
-        return Keys.IDENTITY_PHONE;
+        return Internal.createIdentity(o.lnt.domain.tables.Phone.PHONE, o.lnt.domain.tables.Phone.PHONE.PHONEID);
     }
 
     /**
@@ -143,7 +137,7 @@ public class Phone extends TableImpl<PhoneRecord> {
      */
     @Override
     public UniqueKey<PhoneRecord> getPrimaryKey() {
-        return Keys.KEY_PHONE_PRIMARY;
+        return Internal.createUniqueKey(o.lnt.domain.tables.Phone.PHONE, "KEY_phone_PRIMARY", o.lnt.domain.tables.Phone.PHONE.PHONEID, o.lnt.domain.tables.Phone.PHONE.PERSONID);
     }
 
     /**
@@ -151,19 +145,9 @@ public class Phone extends TableImpl<PhoneRecord> {
      */
     @Override
     public List<UniqueKey<PhoneRecord>> getKeys() {
-        return Arrays.<UniqueKey<PhoneRecord>>asList(Keys.KEY_PHONE_PRIMARY);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<ForeignKey<PhoneRecord, ?>> getReferences() {
-        return Arrays.<ForeignKey<PhoneRecord, ?>>asList(Keys.FK_PHONE_PERSON);
-    }
-
-    public Person person() {
-        return new Person(this, Keys.FK_PHONE_PERSON);
+        return Arrays.<UniqueKey<PhoneRecord>>asList(
+              Internal.createUniqueKey(o.lnt.domain.tables.Phone.PHONE, "KEY_phone_PRIMARY", o.lnt.domain.tables.Phone.PHONE.PHONEID, o.lnt.domain.tables.Phone.PHONE.PERSONID)
+        );
     }
 
     /**

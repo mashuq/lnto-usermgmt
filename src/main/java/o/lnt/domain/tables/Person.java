@@ -10,22 +10,20 @@ import java.util.List;
 
 import javax.annotation.Generated;
 
+import o.lnt.domain.DefaultSchema;
 import o.lnt.domain.Indexes;
-import o.lnt.domain.Keys;
-import o.lnt.domain.LntoUsermgmt;
 import o.lnt.domain.tables.records.PersonRecord;
 
 import org.jooq.Field;
-import org.jooq.ForeignKey;
 import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
-import org.jooq.Record;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
+import org.jooq.impl.Internal;
 import org.jooq.impl.TableImpl;
 
 
@@ -42,10 +40,10 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Person extends TableImpl<PersonRecord> {
 
-    private static final long serialVersionUID = -1104260209;
+    private static final long serialVersionUID = 832423796;
 
     /**
-     * The reference instance of <code>lnto_usermgmt.person</code>
+     * The reference instance of <code>person</code>
      */
     public static final Person PERSON = new Person();
 
@@ -58,66 +56,66 @@ public class Person extends TableImpl<PersonRecord> {
     }
 
     /**
-     * The column <code>lnto_usermgmt.person.PersonID</code>.
+     * The column <code>person.PersonID</code>.
      */
     public final TableField<PersonRecord, Integer> PERSONID = createField("PersonID", org.jooq.impl.SQLDataType.INTEGER.nullable(false).identity(true), this, "");
 
     /**
-     * The column <code>lnto_usermgmt.person.FirstName</code>.
+     * The column <code>person.FirstName</code>.
      */
     public final TableField<PersonRecord, String> FIRSTNAME = createField("FirstName", org.jooq.impl.SQLDataType.VARCHAR(128).nullable(false), this, "");
 
     /**
-     * The column <code>lnto_usermgmt.person.LastName</code>.
+     * The column <code>person.LastName</code>.
      */
     public final TableField<PersonRecord, String> LASTNAME = createField("LastName", org.jooq.impl.SQLDataType.VARCHAR(128).nullable(false), this, "");
 
     /**
-     * The column <code>lnto_usermgmt.person.MiddleName</code>.
+     * The column <code>person.MiddleName</code>.
      */
     public final TableField<PersonRecord, String> MIDDLENAME = createField("MiddleName", org.jooq.impl.SQLDataType.VARCHAR(128), this, "");
 
     /**
-     * The column <code>lnto_usermgmt.person.Gender</code>.
+     * The column <code>person.Gender</code>.
      */
     public final TableField<PersonRecord, String> GENDER = createField("Gender", org.jooq.impl.SQLDataType.VARCHAR(6), this, "");
 
     /**
-     * The column <code>lnto_usermgmt.person.Birthday</code>.
+     * The column <code>person.Birthday</code>.
      */
     public final TableField<PersonRecord, LocalDateTime> BIRTHDAY = createField("Birthday", org.jooq.impl.SQLDataType.LOCALDATETIME.nullable(false), this, "");
 
     /**
-     * The column <code>lnto_usermgmt.person.Title</code>.
+     * The column <code>person.Title</code>.
      */
     public final TableField<PersonRecord, String> TITLE = createField("Title", org.jooq.impl.SQLDataType.VARCHAR(128), this, "");
 
     /**
-     * The column <code>lnto_usermgmt.person.Suffix</code>.
+     * The column <code>person.Suffix</code>.
      */
     public final TableField<PersonRecord, String> SUFFIX = createField("Suffix", org.jooq.impl.SQLDataType.VARCHAR(128), this, "");
 
     /**
-     * The column <code>lnto_usermgmt.person.Active</code>.
+     * The column <code>person.Active</code>.
      */
     public final TableField<PersonRecord, Byte> ACTIVE = createField("Active", org.jooq.impl.SQLDataType.TINYINT.nullable(false), this, "");
 
     /**
-     * Create a <code>lnto_usermgmt.person</code> table reference
+     * Create a <code>person</code> table reference
      */
     public Person() {
         this(DSL.name("person"), null);
     }
 
     /**
-     * Create an aliased <code>lnto_usermgmt.person</code> table reference
+     * Create an aliased <code>person</code> table reference
      */
     public Person(String alias) {
         this(DSL.name(alias), PERSON);
     }
 
     /**
-     * Create an aliased <code>lnto_usermgmt.person</code> table reference
+     * Create an aliased <code>person</code> table reference
      */
     public Person(Name alias) {
         this(alias, PERSON);
@@ -131,16 +129,12 @@ public class Person extends TableImpl<PersonRecord> {
         super(alias, null, aliased, parameters, DSL.comment(""));
     }
 
-    public <O extends Record> Person(Table<O> child, ForeignKey<O, PersonRecord> key) {
-        super(child, key, PERSON);
-    }
-
     /**
      * {@inheritDoc}
      */
     @Override
     public Schema getSchema() {
-        return LntoUsermgmt.LNTO_USERMGMT;
+        return DefaultSchema.DEFAULT_SCHEMA;
     }
 
     /**
@@ -156,7 +150,7 @@ public class Person extends TableImpl<PersonRecord> {
      */
     @Override
     public Identity<PersonRecord, Integer> getIdentity() {
-        return Keys.IDENTITY_PERSON;
+        return Internal.createIdentity(o.lnt.domain.tables.Person.PERSON, o.lnt.domain.tables.Person.PERSON.PERSONID);
     }
 
     /**
@@ -164,7 +158,7 @@ public class Person extends TableImpl<PersonRecord> {
      */
     @Override
     public UniqueKey<PersonRecord> getPrimaryKey() {
-        return Keys.KEY_PERSON_PRIMARY;
+        return Internal.createUniqueKey(o.lnt.domain.tables.Person.PERSON, "KEY_person_PRIMARY", o.lnt.domain.tables.Person.PERSON.PERSONID);
     }
 
     /**
@@ -172,7 +166,9 @@ public class Person extends TableImpl<PersonRecord> {
      */
     @Override
     public List<UniqueKey<PersonRecord>> getKeys() {
-        return Arrays.<UniqueKey<PersonRecord>>asList(Keys.KEY_PERSON_PRIMARY);
+        return Arrays.<UniqueKey<PersonRecord>>asList(
+              Internal.createUniqueKey(o.lnt.domain.tables.Person.PERSON, "KEY_person_PRIMARY", o.lnt.domain.tables.Person.PERSON.PERSONID)
+        );
     }
 
     /**

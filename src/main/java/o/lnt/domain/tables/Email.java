@@ -9,22 +9,20 @@ import java.util.List;
 
 import javax.annotation.Generated;
 
+import o.lnt.domain.DefaultSchema;
 import o.lnt.domain.Indexes;
-import o.lnt.domain.Keys;
-import o.lnt.domain.LntoUsermgmt;
 import o.lnt.domain.tables.records.EmailRecord;
 
 import org.jooq.Field;
-import org.jooq.ForeignKey;
 import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
-import org.jooq.Record;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
+import org.jooq.impl.Internal;
 import org.jooq.impl.TableImpl;
 
 
@@ -41,10 +39,10 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Email extends TableImpl<EmailRecord> {
 
-    private static final long serialVersionUID = 204008333;
+    private static final long serialVersionUID = 973113071;
 
     /**
-     * The reference instance of <code>lnto_usermgmt.email</code>
+     * The reference instance of <code>email</code>
      */
     public static final Email EMAIL = new Email();
 
@@ -57,46 +55,46 @@ public class Email extends TableImpl<EmailRecord> {
     }
 
     /**
-     * The column <code>lnto_usermgmt.email.EmailID</code>.
+     * The column <code>email.EmailID</code>.
      */
     public final TableField<EmailRecord, Integer> EMAILID = createField("EmailID", org.jooq.impl.SQLDataType.INTEGER.nullable(false).identity(true), this, "");
 
     /**
-     * The column <code>lnto_usermgmt.email.AddressType</code>.
+     * The column <code>email.AddressType</code>.
      */
     public final TableField<EmailRecord, String> ADDRESSTYPE = createField("AddressType", org.jooq.impl.SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>lnto_usermgmt.email.EmailAddress</code>.
+     * The column <code>email.EmailAddress</code>.
      */
     public final TableField<EmailRecord, String> EMAILADDRESS = createField("EmailAddress", org.jooq.impl.SQLDataType.VARCHAR(128), this, "");
 
     /**
-     * The column <code>lnto_usermgmt.email.PersonID</code>.
+     * The column <code>email.PersonID</code>.
      */
     public final TableField<EmailRecord, Integer> PERSONID = createField("PersonID", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
-     * The column <code>lnto_usermgmt.email.IsDefault</code>.
+     * The column <code>email.IsDefault</code>.
      */
     public final TableField<EmailRecord, Byte> ISDEFAULT = createField("IsDefault", org.jooq.impl.SQLDataType.TINYINT.nullable(false), this, "");
 
     /**
-     * Create a <code>lnto_usermgmt.email</code> table reference
+     * Create a <code>email</code> table reference
      */
     public Email() {
         this(DSL.name("email"), null);
     }
 
     /**
-     * Create an aliased <code>lnto_usermgmt.email</code> table reference
+     * Create an aliased <code>email</code> table reference
      */
     public Email(String alias) {
         this(DSL.name(alias), EMAIL);
     }
 
     /**
-     * Create an aliased <code>lnto_usermgmt.email</code> table reference
+     * Create an aliased <code>email</code> table reference
      */
     public Email(Name alias) {
         this(alias, EMAIL);
@@ -110,16 +108,12 @@ public class Email extends TableImpl<EmailRecord> {
         super(alias, null, aliased, parameters, DSL.comment(""));
     }
 
-    public <O extends Record> Email(Table<O> child, ForeignKey<O, EmailRecord> key) {
-        super(child, key, EMAIL);
-    }
-
     /**
      * {@inheritDoc}
      */
     @Override
     public Schema getSchema() {
-        return LntoUsermgmt.LNTO_USERMGMT;
+        return DefaultSchema.DEFAULT_SCHEMA;
     }
 
     /**
@@ -135,7 +129,7 @@ public class Email extends TableImpl<EmailRecord> {
      */
     @Override
     public Identity<EmailRecord, Integer> getIdentity() {
-        return Keys.IDENTITY_EMAIL;
+        return Internal.createIdentity(o.lnt.domain.tables.Email.EMAIL, o.lnt.domain.tables.Email.EMAIL.EMAILID);
     }
 
     /**
@@ -143,7 +137,7 @@ public class Email extends TableImpl<EmailRecord> {
      */
     @Override
     public UniqueKey<EmailRecord> getPrimaryKey() {
-        return Keys.KEY_EMAIL_PRIMARY;
+        return Internal.createUniqueKey(o.lnt.domain.tables.Email.EMAIL, "KEY_email_PRIMARY", o.lnt.domain.tables.Email.EMAIL.EMAILID, o.lnt.domain.tables.Email.EMAIL.PERSONID);
     }
 
     /**
@@ -151,19 +145,9 @@ public class Email extends TableImpl<EmailRecord> {
      */
     @Override
     public List<UniqueKey<EmailRecord>> getKeys() {
-        return Arrays.<UniqueKey<EmailRecord>>asList(Keys.KEY_EMAIL_PRIMARY);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<ForeignKey<EmailRecord, ?>> getReferences() {
-        return Arrays.<ForeignKey<EmailRecord, ?>>asList(Keys.FK_PHONE_PERSON0);
-    }
-
-    public Person person() {
-        return new Person(this, Keys.FK_PHONE_PERSON0);
+        return Arrays.<UniqueKey<EmailRecord>>asList(
+              Internal.createUniqueKey(o.lnt.domain.tables.Email.EMAIL, "KEY_email_PRIMARY", o.lnt.domain.tables.Email.EMAIL.EMAILID, o.lnt.domain.tables.Email.EMAIL.PERSONID)
+        );
     }
 
     /**

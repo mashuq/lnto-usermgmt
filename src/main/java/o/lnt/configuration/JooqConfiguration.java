@@ -36,6 +36,10 @@ public class JooqConfiguration {
         DefaultConfiguration jooqConfiguration = new DefaultConfiguration();
         jooqConfiguration.set(connectionProvider());
         jooqConfiguration.setSQLDialect(SQLDialect.valueOf(dialect));
+        jooqConfiguration.settings().withRenderCatalog(false);
+        jooqConfiguration.settings().withRenderSchema(false);
+        jooqConfiguration.settings().setRenderSchema(false);
+        jooqConfiguration.settings().setRenderCatalog(false);
         return jooqConfiguration;
     }
 }

@@ -28,73 +28,73 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class PhoneRecord extends UpdatableRecordImpl<PhoneRecord> implements Record5<Integer, String, String, Integer, Byte> {
 
-    private static final long serialVersionUID = 2074209471;
+    private static final long serialVersionUID = -1827482241;
 
     /**
-     * Setter for <code>lnto_usermgmt.phone.PhoneID</code>.
+     * Setter for <code>phone.PhoneID</code>.
      */
     public void setPhoneid(Integer value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>lnto_usermgmt.phone.PhoneID</code>.
+     * Getter for <code>phone.PhoneID</code>.
      */
     public Integer getPhoneid() {
         return (Integer) get(0);
     }
 
     /**
-     * Setter for <code>lnto_usermgmt.phone.AddressType</code>.
+     * Setter for <code>phone.AddressType</code>.
      */
     public void setAddresstype(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>lnto_usermgmt.phone.AddressType</code>.
+     * Getter for <code>phone.AddressType</code>.
      */
     public String getAddresstype() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>lnto_usermgmt.phone.PhoneNumber</code>.
+     * Setter for <code>phone.PhoneNumber</code>.
      */
     public void setPhonenumber(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>lnto_usermgmt.phone.PhoneNumber</code>.
+     * Getter for <code>phone.PhoneNumber</code>.
      */
     public String getPhonenumber() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>lnto_usermgmt.phone.PersonID</code>.
+     * Setter for <code>phone.PersonID</code>.
      */
     public void setPersonid(Integer value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>lnto_usermgmt.phone.PersonID</code>.
+     * Getter for <code>phone.PersonID</code>.
      */
     public Integer getPersonid() {
         return (Integer) get(3);
     }
 
     /**
-     * Setter for <code>lnto_usermgmt.phone.IsDefault</code>.
+     * Setter for <code>phone.IsDefault</code>.
      */
     public void setIsdefault(Byte value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>lnto_usermgmt.phone.IsDefault</code>.
+     * Getter for <code>phone.IsDefault</code>.
      */
     public Byte getIsdefault() {
         return (Byte) get(4);

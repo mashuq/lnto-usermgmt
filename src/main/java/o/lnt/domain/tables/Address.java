@@ -10,22 +10,20 @@ import java.util.List;
 
 import javax.annotation.Generated;
 
+import o.lnt.domain.DefaultSchema;
 import o.lnt.domain.Indexes;
-import o.lnt.domain.Keys;
-import o.lnt.domain.LntoUsermgmt;
 import o.lnt.domain.tables.records.AddressRecord;
 
 import org.jooq.Field;
-import org.jooq.ForeignKey;
 import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
-import org.jooq.Record;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
+import org.jooq.impl.Internal;
 import org.jooq.impl.TableImpl;
 
 
@@ -42,10 +40,10 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Address extends TableImpl<AddressRecord> {
 
-    private static final long serialVersionUID = 352338948;
+    private static final long serialVersionUID = -952505264;
 
     /**
-     * The reference instance of <code>lnto_usermgmt.address</code>
+     * The reference instance of <code>address</code>
      */
     public static final Address ADDRESS = new Address();
 
@@ -58,86 +56,86 @@ public class Address extends TableImpl<AddressRecord> {
     }
 
     /**
-     * The column <code>lnto_usermgmt.address.AddressID</code>.
+     * The column <code>address.AddressID</code>.
      */
     public final TableField<AddressRecord, Integer> ADDRESSID = createField("AddressID", org.jooq.impl.SQLDataType.INTEGER.nullable(false).identity(true), this, "");
 
     /**
-     * The column <code>lnto_usermgmt.address.AddressType</code>.
+     * The column <code>address.AddressType</code>.
      */
     public final TableField<AddressRecord, String> ADDRESSTYPE = createField("AddressType", org.jooq.impl.SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>lnto_usermgmt.address.PersonID</code>.
+     * The column <code>address.PersonID</code>.
      */
     public final TableField<AddressRecord, Integer> PERSONID = createField("PersonID", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
-     * The column <code>lnto_usermgmt.address.IsDefault</code>.
+     * The column <code>address.IsDefault</code>.
      */
     public final TableField<AddressRecord, Byte> ISDEFAULT = createField("IsDefault", org.jooq.impl.SQLDataType.TINYINT.nullable(false), this, "");
 
     /**
-     * The column <code>lnto_usermgmt.address.Country</code>.
+     * The column <code>address.Country</code>.
      */
     public final TableField<AddressRecord, String> COUNTRY = createField("Country", org.jooq.impl.SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>lnto_usermgmt.address.ZipPostCode</code>.
+     * The column <code>address.ZipPostCode</code>.
      */
     public final TableField<AddressRecord, String> ZIPPOSTCODE = createField("ZipPostCode", org.jooq.impl.SQLDataType.VARCHAR(45), this, "");
 
     /**
-     * The column <code>lnto_usermgmt.address.ProvinceStateCounty</code>.
+     * The column <code>address.ProvinceStateCounty</code>.
      */
     public final TableField<AddressRecord, String> PROVINCESTATECOUNTY = createField("ProvinceStateCounty", org.jooq.impl.SQLDataType.VARCHAR(128), this, "");
 
     /**
-     * The column <code>lnto_usermgmt.address.CityTownVillage</code>.
+     * The column <code>address.CityTownVillage</code>.
      */
     public final TableField<AddressRecord, String> CITYTOWNVILLAGE = createField("CityTownVillage", org.jooq.impl.SQLDataType.VARCHAR(128).nullable(false), this, "");
 
     /**
-     * The column <code>lnto_usermgmt.address.StreetRoadBlock</code>.
+     * The column <code>address.StreetRoadBlock</code>.
      */
     public final TableField<AddressRecord, String> STREETROADBLOCK = createField("StreetRoadBlock", org.jooq.impl.SQLDataType.VARCHAR(128).nullable(false), this, "");
 
     /**
-     * The column <code>lnto_usermgmt.address.HouseBuilding</code>.
+     * The column <code>address.HouseBuilding</code>.
      */
     public final TableField<AddressRecord, String> HOUSEBUILDING = createField("HouseBuilding", org.jooq.impl.SQLDataType.VARCHAR(128).nullable(false), this, "");
 
     /**
-     * The column <code>lnto_usermgmt.address.Other</code>.
+     * The column <code>address.Other</code>.
      */
     public final TableField<AddressRecord, String> OTHER = createField("Other", org.jooq.impl.SQLDataType.VARCHAR(512), this, "");
 
     /**
-     * The column <code>lnto_usermgmt.address.Longitude</code>.
+     * The column <code>address.Longitude</code>.
      */
     public final TableField<AddressRecord, BigDecimal> LONGITUDE = createField("Longitude", org.jooq.impl.SQLDataType.DECIMAL(11, 8), this, "");
 
     /**
-     * The column <code>lnto_usermgmt.address.Latitude</code>.
+     * The column <code>address.Latitude</code>.
      */
     public final TableField<AddressRecord, BigDecimal> LATITUDE = createField("Latitude", org.jooq.impl.SQLDataType.DECIMAL(11, 8), this, "");
 
     /**
-     * Create a <code>lnto_usermgmt.address</code> table reference
+     * Create a <code>address</code> table reference
      */
     public Address() {
         this(DSL.name("address"), null);
     }
 
     /**
-     * Create an aliased <code>lnto_usermgmt.address</code> table reference
+     * Create an aliased <code>address</code> table reference
      */
     public Address(String alias) {
         this(DSL.name(alias), ADDRESS);
     }
 
     /**
-     * Create an aliased <code>lnto_usermgmt.address</code> table reference
+     * Create an aliased <code>address</code> table reference
      */
     public Address(Name alias) {
         this(alias, ADDRESS);
@@ -151,16 +149,12 @@ public class Address extends TableImpl<AddressRecord> {
         super(alias, null, aliased, parameters, DSL.comment(""));
     }
 
-    public <O extends Record> Address(Table<O> child, ForeignKey<O, AddressRecord> key) {
-        super(child, key, ADDRESS);
-    }
-
     /**
      * {@inheritDoc}
      */
     @Override
     public Schema getSchema() {
-        return LntoUsermgmt.LNTO_USERMGMT;
+        return DefaultSchema.DEFAULT_SCHEMA;
     }
 
     /**
@@ -176,7 +170,7 @@ public class Address extends TableImpl<AddressRecord> {
      */
     @Override
     public Identity<AddressRecord, Integer> getIdentity() {
-        return Keys.IDENTITY_ADDRESS;
+        return Internal.createIdentity(o.lnt.domain.tables.Address.ADDRESS, o.lnt.domain.tables.Address.ADDRESS.ADDRESSID);
     }
 
     /**
@@ -184,7 +178,7 @@ public class Address extends TableImpl<AddressRecord> {
      */
     @Override
     public UniqueKey<AddressRecord> getPrimaryKey() {
-        return Keys.KEY_ADDRESS_PRIMARY;
+        return Internal.createUniqueKey(o.lnt.domain.tables.Address.ADDRESS, "KEY_address_PRIMARY", o.lnt.domain.tables.Address.ADDRESS.ADDRESSID, o.lnt.domain.tables.Address.ADDRESS.PERSONID);
     }
 
     /**
@@ -192,19 +186,9 @@ public class Address extends TableImpl<AddressRecord> {
      */
     @Override
     public List<UniqueKey<AddressRecord>> getKeys() {
-        return Arrays.<UniqueKey<AddressRecord>>asList(Keys.KEY_ADDRESS_PRIMARY);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<ForeignKey<AddressRecord, ?>> getReferences() {
-        return Arrays.<ForeignKey<AddressRecord, ?>>asList(Keys.FK_PHONE_PERSON00);
-    }
-
-    public Person person() {
-        return new Person(this, Keys.FK_PHONE_PERSON00);
+        return Arrays.<UniqueKey<AddressRecord>>asList(
+              Internal.createUniqueKey(o.lnt.domain.tables.Address.ADDRESS, "KEY_address_PRIMARY", o.lnt.domain.tables.Address.ADDRESS.ADDRESSID, o.lnt.domain.tables.Address.ADDRESS.PERSONID)
+        );
     }
 
     /**
