@@ -14,6 +14,8 @@
         <version>2.1.2.RELEASE</version>
     </parent>
 
+
+
     <!-- Add typical dependencies for a web application -->
     <dependencies>
         <dependency>
@@ -36,6 +38,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
 
 
         <dependency>
@@ -59,6 +66,11 @@
             <version>2.3.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.197</version>
+        </dependency>
     </dependencies>
 
 
@@ -67,7 +79,7 @@
 
         <resources>
             <resource>
-                <directory>src/main/resources</directory>
+                <directory>src/main/resources,src/test/resources</directory>
                 <filtering>true</filtering>
                 <includes>
                     <include>**/*.properties</include>
@@ -96,19 +108,20 @@
                 <version>1.5</version>
                 <executions>
                     <execution>
-                        <id>create-database-mysql</id>
+                        <id>create-database</id>
                         <phase>generate-sources</phase>
                         <goals>
                             <goal>execute</goal>
                         </goals>
                         <configuration>
-                            <driver>${spring.datasource.driver-class-name}</driver>
+                            <driver>${spring.datasource.hikari.driverClassName}</driver>
                             <url>${spring.datasource.baseurl}</url>
-                            <username>${spring.datasource.username}</username>
-                            <password>${spring.datasource.password}</password>
+                            <username>${spring.datasource.hikari.username}</username>
+                            <password>${spring.datasource.hikari.password}</password>
                             <autocommit>true</autocommit>
                             <srcFiles>
-                                <srcFile>src/main/resources/usermgmt.sql</srcFile>
+                                <srcFile>${database.creation.script}</srcFile>
+                                <srcFile>src/main/resources/ddl-script.sql</srcFile>
                             </srcFiles>
                         </configuration>
                     </execution>
@@ -119,6 +132,11 @@
                         <groupId>mysql</groupId>
                         <artifactId>mysql-connector-java</artifactId>
                         <version>8.0.13</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.h2database</groupId>
+                        <artifactId>h2</artifactId>
+                        <version>1.4.197</version>
                     </dependency>
                 </dependencies>
             </plugin>
@@ -136,10 +154,10 @@
                         </goals>
                         <configuration>
                             <jdbc>
-                                <driver>${spring.datasource.driver-class-name}</driver>
-                                <url>${spring.datasource.url}</url>
-                                <user>${spring.datasource.username}</user>
-                                <password>${spring.datasource.password}</password>
+                                <driver>${spring.datasource.hikari.driverClassName}</driver>
+                                <url>${spring.datasource.hikari.jdbcUrl}</url>
+                                <user>${spring.datasource.hikari.username}</user>
+                                <password>${spring.datasource.hikari.password}</password>
                             </jdbc>
                             <generator>
                                 <name>org.jooq.codegen.JavaGenerator</name>
@@ -156,6 +174,9 @@
                                     <packageName>o.lnt.domain</packageName>
                                     <directory>src/main/java</directory>
                                 </target>
+                                <generate>
+                                    <javaTimeTypes>true</javaTimeTypes>
+                                </generate>
                             </generator>
                         </configuration>
                     </execution>
