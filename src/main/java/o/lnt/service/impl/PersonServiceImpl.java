@@ -41,30 +41,30 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public PersonBean updatePerson(PersonBean personBean) {
         validatePersonBean(personBean, true);
-        PersonRecord personRecord = this.getPersonRecord(personBean.getPersonID());
+        PersonRecord personRecord = this.getPersonRecord(personBean.getUuid());
         personRecord.from(personBean);
         personRecord.update();
         return personRecord.into(PersonBean.class);
     }
 
     @Override
-    public PersonBean getPerson(Integer personID) {
-        PersonRecord personRecord = this.getPersonRecord(personID);
+    public PersonBean getPerson(String uuid) {
+        PersonRecord personRecord = this.getPersonRecord(uuid);
         return personRecord.into(PersonBean.class);
     }
 
     @Override
-    public void deletePerson(Integer personID) {
-        PersonRecord personRecord = this.getPersonRecord(personID);
+    public void deletePerson(String uuid) {
+        PersonRecord personRecord = this.getPersonRecord(uuid);
         personRecord.setActive((byte) 0);
         personRecord.update();
     }
 
-    private PersonRecord getPersonRecord(Integer personID) {
-        if(null == personID){
+    private PersonRecord getPersonRecord(String uuid) {
+        if(null == uuid){
             throw new InvalidParameterException("personID is expected but null");
         }
-        PersonRecord personRecord = dsl.fetchOne(Person.PERSON, Person.PERSON.PERSONID.eq(personID));
+        PersonRecord personRecord = dsl.fetchOne(Person.PERSON, Person.PERSON.UUID.eq(uuid).and(Person.PERSON.ACTIVE.eq((byte)1)));
         if(null == personRecord){
             throw new RecordNotFoundException();
         }

@@ -8,7 +8,7 @@ public interface PersonService {
 
     public PersonBean updatePerson(PersonBean personBean);
 
-    public PersonBean getPerson(Integer personID);
+    public PersonBean getPerson(String uuid);
 
-    public void deletePerson(Integer personID);
+    public void deletePerson(String uuid);
 }

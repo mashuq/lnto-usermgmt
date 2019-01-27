@@ -27,6 +27,8 @@ public class PersonBean {
     private List<PhoneBean> phones;
     private List<AddressBean> addresses;
     private boolean active;
+    @NotBlank(message = "UUID cannot be null")
+    private String uuid;
 
     public Integer getPersonID() {
         return personID;
@@ -124,22 +126,12 @@ public class PersonBean {
         this.active = active;
     }
 
-    @Override
-    public String toString() {
-        return "PersonBean{" +
-                "personID=" + personID +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", middleName='" + middleName + '\'' +
-                ", birthday=" + birthday +
-                ", gender=" + gender +
-                ", title='" + title + '\'' +
-                ", suffix='" + suffix + '\'' +
-                ", emails=" + emails +
-                ", phones=" + phones +
-                ", addresses=" + addresses +
-                ", active=" + active +
-                '}';
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 
     @Override
@@ -151,15 +143,13 @@ public class PersonBean {
                 Objects.equals(personID, that.personID) &&
                 firstName.equals(that.firstName) &&
                 lastName.equals(that.lastName) &&
-                Objects.equals(middleName, that.middleName) &&
                 birthday.equals(that.birthday) &&
                 gender == that.gender &&
-                Objects.equals(title, that.title) &&
-                Objects.equals(suffix, that.suffix);
+                uuid.equals(that.uuid);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(personID, firstName, lastName, middleName, birthday, gender, title, suffix, active);
+        return Objects.hash(personID, firstName, lastName, birthday, gender, active, uuid);
     }
 }

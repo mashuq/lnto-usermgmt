@@ -3,14 +3,10 @@ package o.lnt.rest;
 import o.lnt.bean.PersonBean;
 import o.lnt.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Collections;
-import java.util.List;
 
 @RestController
 public class PersonController {
@@ -19,12 +15,23 @@ public class PersonController {
     private PersonService personService;
 
     @PostMapping("/person")
-    PersonBean newPerson(@RequestBody @Valid PersonBean personBean) {
+    PersonBean createPerson(@RequestBody @Valid PersonBean personBean) {
         return personService.savePerson(personBean);
-     }
+    }
 
-    @GetMapping("/persons")
-    List<PersonBean> all() {
-        return Collections.EMPTY_LIST;
+    @PutMapping("/person")
+    PersonBean updatPerson(@RequestBody @Valid PersonBean personBean) {
+        return personService.updatePerson(personBean);
+    }
+
+    @GetMapping("/person/{uuid}")
+    PersonBean getPerson(@RequestParam(name = "uuid") String uuid) {
+        return personService.getPerson(uuid);
+    }
+
+    @DeleteMapping("/person/{uuid}")
+    @ResponseStatus(value = HttpStatus.OK)
+    void deletePerson(@RequestParam(name = "uuid") String uuid){
+        personService.deletePerson(uuid);
     }
 }
