@@ -40,7 +40,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Address extends TableImpl<AddressRecord> {
 
-    private static final long serialVersionUID = -952505264;
+    private static final long serialVersionUID = 615111802;
 
     /**
      * The reference instance of <code>address</code>
@@ -71,9 +71,9 @@ public class Address extends TableImpl<AddressRecord> {
     public final TableField<AddressRecord, Integer> PERSONID = createField("PersonID", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
-     * The column <code>address.IsDefault</code>.
+     * The column <code>address.Default</code>.
      */
-    public final TableField<AddressRecord, Byte> ISDEFAULT = createField("IsDefault", org.jooq.impl.SQLDataType.TINYINT.nullable(false), this, "");
+    public final TableField<AddressRecord, Byte> DEFAULT = createField("Default", org.jooq.impl.SQLDataType.TINYINT.nullable(false), this, "");
 
     /**
      * The column <code>address.Country</code>.

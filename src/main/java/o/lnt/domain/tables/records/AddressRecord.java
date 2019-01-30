@@ -30,7 +30,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class AddressRecord extends UpdatableRecordImpl<AddressRecord> implements Record13<Integer, String, Integer, Byte, String, String, String, String, String, String, String, BigDecimal, BigDecimal> {
 
-    private static final long serialVersionUID = -1883665979;
+    private static final long serialVersionUID = 100084227;
 
     /**
      * Setter for <code>address.AddressID</code>.
@@ -75,16 +75,16 @@ public class AddressRecord extends UpdatableRecordImpl<AddressRecord> implements
     }
 
     /**
-     * Setter for <code>address.IsDefault</code>.
+     * Setter for <code>address.Default</code>.
      */
-    public void setIsdefault(Byte value) {
+    public void setDefault(Byte value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>address.IsDefault</code>.
+     * Getter for <code>address.Default</code>.
      */
-    public Byte getIsdefault() {
+    public Byte getDefault() {
         return (Byte) get(3);
     }
 
@@ -275,7 +275,7 @@ public class AddressRecord extends UpdatableRecordImpl<AddressRecord> implements
      */
     @Override
     public Field<Byte> field4() {
-        return Address.ADDRESS.ISDEFAULT;
+        return Address.ADDRESS.DEFAULT;
     }
 
     /**
@@ -379,7 +379,7 @@ public class AddressRecord extends UpdatableRecordImpl<AddressRecord> implements
      */
     @Override
     public Byte component4() {
-        return getIsdefault();
+        return getDefault();
     }
 
     /**
@@ -483,7 +483,7 @@ public class AddressRecord extends UpdatableRecordImpl<AddressRecord> implements
      */
     @Override
     public Byte value4() {
-        return getIsdefault();
+        return getDefault();
     }
 
     /**
@@ -590,7 +590,7 @@ public class AddressRecord extends UpdatableRecordImpl<AddressRecord> implements
      */
     @Override
     public AddressRecord value4(Byte value) {
-        setIsdefault(value);
+        setDefault(value);
         return this;
     }
 
@@ -710,13 +710,13 @@ public class AddressRecord extends UpdatableRecordImpl<AddressRecord> implements
     /**
      * Create a detached, initialised AddressRecord
      */
-    public AddressRecord(Integer addressid, String addresstype, Integer personid, Byte isdefault, String country, String zippostcode, String provincestatecounty, String citytownvillage, String streetroadblock, String housebuilding, String other, BigDecimal longitude, BigDecimal latitude) {
+    public AddressRecord(Integer addressid, String addresstype, Integer personid, Byte default_, String country, String zippostcode, String provincestatecounty, String citytownvillage, String streetroadblock, String housebuilding, String other, BigDecimal longitude, BigDecimal latitude) {
         super(Address.ADDRESS);
 
         set(0, addressid);
         set(1, addresstype);
         set(2, personid);
-        set(3, isdefault);
+        set(3, default_);
         set(4, country);
         set(5, zippostcode);
         set(6, provincestatecounty);

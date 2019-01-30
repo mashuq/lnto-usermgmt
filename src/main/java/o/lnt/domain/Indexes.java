@@ -38,6 +38,7 @@ public class Indexes {
     public static final Index EMAIL_FK_PHONE_PERSON0 = Indexes0.EMAIL_FK_PHONE_PERSON0;
     public static final Index EMAIL_PRIMARY = Indexes0.EMAIL_PRIMARY;
     public static final Index PERSON_PRIMARY = Indexes0.PERSON_PRIMARY;
+    public static final Index PERSON_UUID_UNIQUE = Indexes0.PERSON_UUID_UNIQUE;
     public static final Index PHONE_FK_PHONE_PERSON = Indexes0.PHONE_FK_PHONE_PERSON;
     public static final Index PHONE_PRIMARY = Indexes0.PHONE_PRIMARY;
 
@@ -51,6 +52,7 @@ public class Indexes {
         public static Index EMAIL_FK_PHONE_PERSON0 = Internal.createIndex("fk_Phone_Person0", Email.EMAIL, new OrderField[] { Email.EMAIL.PERSONID }, false);
         public static Index EMAIL_PRIMARY = Internal.createIndex("PRIMARY", Email.EMAIL, new OrderField[] { Email.EMAIL.EMAILID, Email.EMAIL.PERSONID }, true);
         public static Index PERSON_PRIMARY = Internal.createIndex("PRIMARY", Person.PERSON, new OrderField[] { Person.PERSON.PERSONID }, true);
+        public static Index PERSON_UUID_UNIQUE = Internal.createIndex("Uuid_UNIQUE", Person.PERSON, new OrderField[] { Person.PERSON.UUID }, true);
         public static Index PHONE_FK_PHONE_PERSON = Internal.createIndex("fk_Phone_Person", Phone.PHONE, new OrderField[] { Phone.PHONE.PERSONID }, false);
         public static Index PHONE_PRIMARY = Internal.createIndex("PRIMARY", Phone.PHONE, new OrderField[] { Phone.PHONE.PHONEID, Phone.PHONE.PERSONID }, true);
     }

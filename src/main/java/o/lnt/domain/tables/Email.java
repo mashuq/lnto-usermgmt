@@ -39,7 +39,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Email extends TableImpl<EmailRecord> {
 
-    private static final long serialVersionUID = 973113071;
+    private static final long serialVersionUID = -445993511;
 
     /**
      * The reference instance of <code>email</code>
@@ -75,9 +75,9 @@ public class Email extends TableImpl<EmailRecord> {
     public final TableField<EmailRecord, Integer> PERSONID = createField("PersonID", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
-     * The column <code>email.IsDefault</code>.
+     * The column <code>email.Default</code>.
      */
-    public final TableField<EmailRecord, Byte> ISDEFAULT = createField("IsDefault", org.jooq.impl.SQLDataType.TINYINT.nullable(false), this, "");
+    public final TableField<EmailRecord, Byte> DEFAULT = createField("Default", org.jooq.impl.SQLDataType.TINYINT.nullable(false), this, "");
 
     /**
      * Create a <code>email</code> table reference

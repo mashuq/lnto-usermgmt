@@ -24,14 +24,14 @@ public class PersonController {
         return personService.updatePerson(personBean);
     }
 
-    @GetMapping("/person/{uuid}")
-    PersonBean getPerson(@RequestParam(name = "uuid") String uuid) {
-        return personService.getPerson(uuid);
+    @GetMapping("/person/{personID}")
+    PersonBean getPerson(@RequestParam(name = "personID") Integer personID) {
+        return personService.getPerson(personID);
     }
 
-    @DeleteMapping("/person/{uuid}")
+    @DeleteMapping("/person/{personID}")
     @ResponseStatus(value = HttpStatus.OK)
-    void deletePerson(@RequestParam(name = "uuid") String uuid){
-        personService.deletePerson(uuid);
+    void deletePerson(@RequestParam(name = "personID") Integer personID) {
+        personService.deletePerson(personID);
     }
 }

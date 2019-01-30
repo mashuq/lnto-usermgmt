@@ -28,7 +28,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class PhoneRecord extends UpdatableRecordImpl<PhoneRecord> implements Record5<Integer, String, String, Integer, Byte> {
 
-    private static final long serialVersionUID = -1827482241;
+    private static final long serialVersionUID = -1964028665;
 
     /**
      * Setter for <code>phone.PhoneID</code>.
@@ -87,16 +87,16 @@ public class PhoneRecord extends UpdatableRecordImpl<PhoneRecord> implements Rec
     }
 
     /**
-     * Setter for <code>phone.IsDefault</code>.
+     * Setter for <code>phone.Default</code>.
      */
-    public void setIsdefault(Byte value) {
+    public void setDefault(Byte value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>phone.IsDefault</code>.
+     * Getter for <code>phone.Default</code>.
      */
-    public Byte getIsdefault() {
+    public Byte getDefault() {
         return (Byte) get(4);
     }
 
@@ -169,7 +169,7 @@ public class PhoneRecord extends UpdatableRecordImpl<PhoneRecord> implements Rec
      */
     @Override
     public Field<Byte> field5() {
-        return Phone.PHONE.ISDEFAULT;
+        return Phone.PHONE.DEFAULT;
     }
 
     /**
@@ -209,7 +209,7 @@ public class PhoneRecord extends UpdatableRecordImpl<PhoneRecord> implements Rec
      */
     @Override
     public Byte component5() {
-        return getIsdefault();
+        return getDefault();
     }
 
     /**
@@ -249,7 +249,7 @@ public class PhoneRecord extends UpdatableRecordImpl<PhoneRecord> implements Rec
      */
     @Override
     public Byte value5() {
-        return getIsdefault();
+        return getDefault();
     }
 
     /**
@@ -293,7 +293,7 @@ public class PhoneRecord extends UpdatableRecordImpl<PhoneRecord> implements Rec
      */
     @Override
     public PhoneRecord value5(Byte value) {
-        setIsdefault(value);
+        setDefault(value);
         return this;
     }
 
@@ -324,13 +324,13 @@ public class PhoneRecord extends UpdatableRecordImpl<PhoneRecord> implements Rec
     /**
      * Create a detached, initialised PhoneRecord
      */
-    public PhoneRecord(Integer phoneid, String addresstype, String phonenumber, Integer personid, Byte isdefault) {
+    public PhoneRecord(Integer phoneid, String addresstype, String phonenumber, Integer personid, Byte default_) {
         super(Phone.PHONE);
 
         set(0, phoneid);
         set(1, addresstype);
         set(2, phonenumber);
         set(3, personid);
-        set(4, isdefault);
+        set(4, default_);
     }
 }

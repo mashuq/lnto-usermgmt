@@ -40,7 +40,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Person extends TableImpl<PersonRecord> {
 
-    private static final long serialVersionUID = 1920992956;
+    private static final long serialVersionUID = 256155483;
 
     /**
      * The reference instance of <code>person</code>
@@ -147,7 +147,7 @@ public class Person extends TableImpl<PersonRecord> {
      */
     @Override
     public List<Index> getIndexes() {
-        return Arrays.<Index>asList(Indexes.PERSON_PRIMARY);
+        return Arrays.<Index>asList(Indexes.PERSON_PRIMARY, Indexes.PERSON_UUID_UNIQUE);
     }
 
     /**
@@ -173,6 +173,7 @@ public class Person extends TableImpl<PersonRecord> {
     public List<UniqueKey<PersonRecord>> getKeys() {
         return Arrays.<UniqueKey<PersonRecord>>asList(
               Internal.createUniqueKey(o.lnt.domain.tables.Person.PERSON, "KEY_person_PRIMARY", o.lnt.domain.tables.Person.PERSON.PERSONID)
+            , Internal.createUniqueKey(o.lnt.domain.tables.Person.PERSON, "KEY_person_Uuid_UNIQUE", o.lnt.domain.tables.Person.PERSON.UUID)
         );
     }
 

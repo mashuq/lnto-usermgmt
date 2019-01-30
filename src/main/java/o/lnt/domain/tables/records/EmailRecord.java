@@ -28,7 +28,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class EmailRecord extends UpdatableRecordImpl<EmailRecord> implements Record5<Integer, String, String, Integer, Byte> {
 
-    private static final long serialVersionUID = -704325159;
+    private static final long serialVersionUID = -1817067;
 
     /**
      * Setter for <code>email.EmailID</code>.
@@ -87,16 +87,16 @@ public class EmailRecord extends UpdatableRecordImpl<EmailRecord> implements Rec
     }
 
     /**
-     * Setter for <code>email.IsDefault</code>.
+     * Setter for <code>email.Default</code>.
      */
-    public void setIsdefault(Byte value) {
+    public void setDefault(Byte value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>email.IsDefault</code>.
+     * Getter for <code>email.Default</code>.
      */
-    public Byte getIsdefault() {
+    public Byte getDefault() {
         return (Byte) get(4);
     }
 
@@ -169,7 +169,7 @@ public class EmailRecord extends UpdatableRecordImpl<EmailRecord> implements Rec
      */
     @Override
     public Field<Byte> field5() {
-        return Email.EMAIL.ISDEFAULT;
+        return Email.EMAIL.DEFAULT;
     }
 
     /**
@@ -209,7 +209,7 @@ public class EmailRecord extends UpdatableRecordImpl<EmailRecord> implements Rec
      */
     @Override
     public Byte component5() {
-        return getIsdefault();
+        return getDefault();
     }
 
     /**
@@ -249,7 +249,7 @@ public class EmailRecord extends UpdatableRecordImpl<EmailRecord> implements Rec
      */
     @Override
     public Byte value5() {
-        return getIsdefault();
+        return getDefault();
     }
 
     /**
@@ -293,7 +293,7 @@ public class EmailRecord extends UpdatableRecordImpl<EmailRecord> implements Rec
      */
     @Override
     public EmailRecord value5(Byte value) {
-        setIsdefault(value);
+        setDefault(value);
         return this;
     }
 
@@ -324,13 +324,13 @@ public class EmailRecord extends UpdatableRecordImpl<EmailRecord> implements Rec
     /**
      * Create a detached, initialised EmailRecord
      */
-    public EmailRecord(Integer emailid, String addresstype, String emailaddress, Integer personid, Byte isdefault) {
+    public EmailRecord(Integer emailid, String addresstype, String emailaddress, Integer personid, Byte default_) {
         super(Email.EMAIL);
 
         set(0, emailid);
         set(1, addresstype);
         set(2, emailaddress);
         set(3, personid);
-        set(4, isdefault);
+        set(4, default_);
     }
 }
