@@ -6,9 +6,9 @@
             </pattern>
         </encoder>
     </appender>
-    <root level="info">
+    <root level="debug">
         <appender-ref ref="STDOUT"/>
     </root>
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
-    <logger name="org.jooq" level="INFO"/>
+    <logger name="org.jooq" level="debug"/>
 </configuration>

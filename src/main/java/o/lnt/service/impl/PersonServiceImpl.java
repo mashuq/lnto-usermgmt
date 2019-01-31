@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -48,6 +49,11 @@ public class PersonServiceImpl implements PersonService {
         PersonRecord personRecord = dsl.newRecord(Person.PERSON, person);
         personRecord.store();
 
+        if (null != person.getEmails()) person.getEmails().stream().forEach(email -> email.setEmailID(null));
+        if (null != person.getAddresses())
+            person.getAddresses().stream().forEach(address -> address.setAddressID(null));
+        if (null != person.getPhones()) person.getPhones().stream().forEach(phone -> phone.setPhoneID(null));
+
         List<EmailBean> emails = saveEmails(person.getEmails(), personRecord.getPersonid());
         List<AddressBean> addresses = saveAddresses(person.getAddresses(), personRecord.getPersonid());
         List<PhoneBean> phones = savePhones(person.getPhones(), personRecord.getPersonid());
@@ -59,75 +65,34 @@ public class PersonServiceImpl implements PersonService {
         return savedPersonBean;
     }
 
-    private List<AddressBean> saveAddresses(List<AddressBean> addresses, Integer personid) {
-        if(null == addresses || addresses.isEmpty()){
-            return Collections.EMPTY_LIST;
-        }
-
-        List<AddressBean> savedAddresss = new ArrayList<>();
-
-        for(AddressBean address : addresses){
-            AddressRecord addressRecord = dsl.newRecord(Address.ADDRESS, address);
-            addressRecord.setPersonid(personid);
-            addressRecord.store();
-            savedAddresss.add(addressRecord.into(AddressBean.class));
-        }
-        return savedAddresss;
-    }
-
-    private List<EmailBean> saveEmails(List<EmailBean> emails, Integer personid) {
-        if(null == emails || emails.isEmpty()){
-            return Collections.EMPTY_LIST;
-        }
-
-        List<EmailBean> savedEmails = new ArrayList<>();
-
-        for(EmailBean email : emails){
-            EmailRecord emailRecord = dsl.newRecord(Email.EMAIL, email);
-            emailRecord.setPersonid(personid);
-            emailRecord.store();
-            savedEmails.add(emailRecord.into(EmailBean.class));
-        }
-        return savedEmails;
-    }
-
-    private List<PhoneBean> savePhones(List<PhoneBean> phones, Integer personid) {
-        if(null == phones || phones.isEmpty()){
-            return Collections.EMPTY_LIST;
-        }
-
-        List<PhoneBean> savedPhones = new ArrayList<>();
-
-        for(PhoneBean phone : phones){
-            PhoneRecord phoneRecord = dsl.newRecord(Phone.PHONE, phone);
-            phoneRecord.setPersonid(personid);
-            phoneRecord.store();
-            savedPhones.add(phoneRecord.into(PhoneBean.class));
-        }
-        return savedPhones;
-    }
-
     @Override
-    public PersonBean updatePerson(PersonBean personBean) {
-        validatePersonBean(personBean, true);
-        PersonRecord personRecord = this.getPersonRecord(personBean.getPersonID());
-        personRecord.from(personBean);
+    public PersonBean updatePerson(PersonBean person) {
+        validatePersonBean(person, true);
+        PersonRecord personRecord = this.getPersonRecord(person.getPersonID());
+        personRecord.from(person);
         personRecord.update();
-        return personRecord.into(PersonBean.class);
+        PersonBean updatedPersonBean = personRecord.into(PersonBean.class);
+
+        List<EmailBean> emails = saveEmails(person.getEmails(), personRecord.getPersonid());
+        List<AddressBean> addresses = saveAddresses(person.getAddresses(), personRecord.getPersonid());
+        List<PhoneBean> phones = savePhones(person.getPhones(), personRecord.getPersonid());
+
+        updatedPersonBean.setEmails(emails);
+        updatedPersonBean.setAddresses(addresses);
+        updatedPersonBean.setPhones(phones);
+        return updatedPersonBean;
     }
 
     @Override
     public PersonBean getPerson(Integer personID) {
         PersonRecord personRecord = this.getPersonRecord(personID);
-        PersonBean person =  personRecord.into(PersonBean.class);
+        PersonBean person = personRecord.into(PersonBean.class);
 
-        person.setEmails(getEmails(person.getPersonID()));
+        person.setEmails(getEmails(personID));
+        person.setAddresses(getAddresses(personID));
+        person.setPhones(getPhones(personID));
 
         return person;
-    }
-
-    private List<EmailBean> getEmails(Integer personID) {
-        return dsl.select().from(Email.EMAIL).where(Email.EMAIL.PERSONID.eq(personID)).fetchInto(EmailBean.class);
     }
 
     @Override
@@ -137,12 +102,106 @@ public class PersonServiceImpl implements PersonService {
         personRecord.update();
     }
 
-    private PersonRecord getPersonRecord(Integer personID) {
-        if(null == personID){
-            throw new InvalidParameterException("personID is expected but null");
+    private List<AddressBean> saveAddresses(List<AddressBean> addresses, Integer personid) {
+        if (null == addresses || addresses.isEmpty()) {
+            return Collections.EMPTY_LIST;
         }
-        PersonRecord personRecord = dsl.fetchOne(Person.PERSON, Person.PERSON.PERSONID.eq(personID).and(Person.PERSON.ACTIVE.eq((byte)1)));
-        if(null == personRecord){
+
+        List<Integer> existingIDs = addresses.stream().filter(address ->
+                address.getAddressID() != null && address.getAddressID() != 0
+        ).map(AddressBean::getAddressID).collect(Collectors.toList());
+
+        dsl.delete(Address.ADDRESS).where(Address.ADDRESS.ADDRESSID.notIn(existingIDs).and(Address.ADDRESS.PERSONID.eq(personid))).execute();
+
+        List<AddressBean> savedAddresss = new ArrayList<>();
+
+        for (AddressBean address : addresses) {
+            AddressRecord addressRecord = dsl.newRecord(Address.ADDRESS, address);
+            addressRecord.setPersonid(personid);
+            if (null == addressRecord.getAddressid() || addressRecord.getAddressid() == 0) {
+                addressRecord.store();
+            } else {
+                addressRecord.update();
+            }
+            savedAddresss.add(addressRecord.into(AddressBean.class));
+        }
+        return savedAddresss;
+    }
+
+    private List<EmailBean> saveEmails(List<EmailBean> emails, Integer personid) {
+        if (null == emails || emails.isEmpty()) {
+            return Collections.EMPTY_LIST;
+        }
+
+        List<Integer> existingIDs = emails.stream().filter(emaail ->
+                emaail.getEmailID() != null && emaail.getEmailID() != 0
+        ).map(EmailBean::getEmailID).collect(Collectors.toList());
+
+        dsl.delete(Email.EMAIL).where(Email.EMAIL.EMAILID.notIn(existingIDs).and(Email.EMAIL.PERSONID.eq(personid))).execute();
+
+        List<EmailBean> savedEmails = new ArrayList<>();
+
+        for (EmailBean email : emails) {
+            EmailRecord emailRecord = dsl.newRecord(Email.EMAIL, email);
+            emailRecord.setPersonid(personid);
+            if (null == emailRecord.getEmailid() || emailRecord.getEmailid() == 0) {
+                emailRecord.store();
+            } else {
+                emailRecord.update();
+            }
+            savedEmails.add(emailRecord.into(EmailBean.class));
+        }
+        return savedEmails;
+    }
+
+    private List<PhoneBean> savePhones(List<PhoneBean> phones, Integer personid) {
+        if (null == phones || phones.isEmpty()) {
+            return Collections.EMPTY_LIST;
+        }
+
+        List<Integer> existingIDs = phones.stream().filter(phone ->
+                phone.getPhoneID() != null && phone.getPhoneID() != 0
+        ).map(PhoneBean::getPhoneID).collect(Collectors.toList());
+
+        dsl.delete(Phone.PHONE).where(Phone.PHONE.PHONEID.notIn(existingIDs).and(Phone.PHONE.PERSONID.eq(personid))).execute();
+
+        List<PhoneBean> savedPhones = new ArrayList<>();
+
+        for (PhoneBean phone : phones) {
+            PhoneRecord phoneRecord = dsl.newRecord(Phone.PHONE, phone);
+            phoneRecord.setPersonid(personid);
+            if (null == phoneRecord.getPhoneid() || phoneRecord.getPhoneid() == 0) {
+                phoneRecord.store();
+            } else {
+                phoneRecord.update();
+            }
+            savedPhones.add(phoneRecord.into(PhoneBean.class));
+        }
+        return savedPhones;
+    }
+
+
+    private List<EmailBean> getEmails(Integer personID) {
+        if (null == personID || personID == 0) return Collections.EMPTY_LIST;
+        return dsl.select().from(Email.EMAIL).where(Email.EMAIL.PERSONID.eq(personID)).fetchInto(EmailBean.class);
+    }
+
+    private List<AddressBean> getAddresses(Integer personID) {
+        if (null == personID || personID == 0) return Collections.EMPTY_LIST;
+        return dsl.select().from(Address.ADDRESS).where(Address.ADDRESS.PERSONID.eq(personID)).fetchInto(AddressBean.class);
+    }
+
+    private List<PhoneBean> getPhones(Integer personID) {
+        if (null == personID || personID == 0) return Collections.EMPTY_LIST;
+        return dsl.select().from(Phone.PHONE).where(Phone.PHONE.PERSONID.eq(personID)).fetchInto(PhoneBean.class);
+    }
+
+    private PersonRecord getPersonRecord(Integer personID) {
+        if (null == personID || personID == 0) {
+            throw new InvalidParameterException("personID is expected but null or 0");
+        }
+        PersonRecord personRecord = dsl.fetchOne(Person.PERSON, Person.PERSON.PERSONID.eq(personID).and(Person.PERSON.ACTIVE.eq((byte) 1)));
+        if (null == personRecord) {
             throw new RecordNotFoundException();
         }
         return personRecord;
@@ -152,7 +211,7 @@ public class PersonServiceImpl implements PersonService {
         if (null == personBean) {
             throw new InvalidParameterException("personBean is null");
         }
-        if(isPersonIDRequired && null == personBean.getPersonID()){
+        if (isPersonIDRequired && (null == personBean.getPersonID() || personBean.getPersonID() == 0)) {
             throw new InvalidParameterException("personID is expected but null");
         }
         Set<ConstraintViolation<PersonBean>> violations = validator.validate(personBean);
